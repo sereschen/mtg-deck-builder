@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# mtg-deck-builder
+
+Small test project for the first Endava React Bootcamp
 
 ## Available Scripts
 
