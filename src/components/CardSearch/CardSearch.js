@@ -15,6 +15,7 @@ export default function CardSearch() {
   const [cards, setCards] = useState([]);
   const delayedText = useDebounce(searchText, 1000);
 
+  test;
   function toggleColor(colors, color) {
     if (colors.includes(color)) {
       return colors.filter(item => color !== item);
