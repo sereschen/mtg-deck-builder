@@ -1,2 +1,19 @@
 {
+  "html.format.indentHandlebars": true,
+  "html.format.indentInnerHtml": true,
+  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.tslintIntegration": true,
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "workbench.colorTheme": "Monokai",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "workbench.settings.editor": "json",
+  "workbench.settings.useSplitJSON": true,
+  "emmet.includeLanguages": { "javascript": "javascriptreact" },
+  "breadcrumbs.enabled": true
 }
