@@ -19,6 +19,7 @@ export default function App() {
       <hr />
       <hr />
 
+      <hr />
       <Route exact path="/" component={CardSearch} />
       <Route path="/card/:id" component={CardDetails} />
     </Router>
