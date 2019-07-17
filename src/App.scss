@@ -1,3 +1,11 @@
+.app {
+  padding: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
 .header {
   display: flex;
   list-style-type: none;
@@ -14,7 +22,6 @@
 }
 
 .card-search {
-  padding: 20px;
   .filters {
     border: 1px solid black;
     border-radius: 5px;
@@ -49,13 +56,18 @@
 }
 
 .card-details {
-  padding: 20px;
   .card-info-body {
     display: flex;
     .card-info {
       border: 1px solid black;
       border-radius: 5px;
       padding: 10px;
+      list-style-type: none;
     }
   }
+}
+
+.icon-button {
+  background: none;
+  border: none;
 }
