@@ -1,27 +1,44 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.scss';
+import rootReducer from './reducers';
 import CardSearch from './components/CardSearch/CardSearch';
 import CardDetails from './components/CardDetails/CardDetails';
+import DecksList from './components/DeckBuilder/DeckBuilder';
+import { loadState, saveState } from './services/localStorageService';
+
+const DECKS_LIST = 'DECKS_LIST';
+const store = createStore(rootReducer, loadState(DECKS_LIST));
+
+store.subscribe(() => {
+  saveState(DECKS_LIST, store.getState());
+});
 
 export default function App() {
   return (
-    <Router>
-      <ul className="header">
-        <li>
-          <Link to="/">Card Search</Link>
-        </li>
-        <li>
-          <Link to="/topics">Topics</Link>
-        </li>
-      </ul>
+    <Provider store={store}>
+      <Router>
+        <ul className="header">
+          <li>
+            <Link to="/">Card Search</Link>
+          </li>
+          <li>
+            <Link to="/deck-builder">Deck Builder</Link>
+          </li>
+        </ul>
 
-      <hr />
-      <hr />
+        <hr />
 
-      <hr />
-      <Route exact path="/" component={CardSearch} />
-      <Route path="/card/:id" component={CardDetails} />
-    </Router>
+        <div className="app">
+          <Switch>
+            <Route exact path="/" component={CardSearch} />
+            <Route path="/card/:id" component={CardDetails} />
+            <Route path="/deck-builder" component={DecksList} />
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 }

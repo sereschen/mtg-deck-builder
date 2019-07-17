@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import mtg from 'mtgsdk';
 import { useDebounce } from '../../hooks/useDebounce';
 import Card from '../Card/Card';
+import Spinner from '../Spinner/Spinner';
 
 const RED = 'red';
 const WHITE = 'white';
@@ -13,6 +14,7 @@ export default function CardSearch() {
   const [searchText, setSearchText] = useState('');
   const [colors, setColors] = useState([]);
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
   const delayedText = useDebounce(searchText, 1000);
 
   function toggleColor(colors, color) {
@@ -24,10 +26,12 @@ export default function CardSearch() {
   }
   useEffect(() => {
     if (delayedText.length > 2) {
+      setIsloading(true);
       mtg.card
         .where({ name: delayedText, colors: colors.join(',') })
         .then(resCards => {
           setCards(resCards);
+          setIsloading(false);
         });
     }
     return () => {
@@ -36,6 +40,7 @@ export default function CardSearch() {
   }, [delayedText, colors]);
   return (
     <div className="card-search">
+      <h1>Card Search</h1>
       <div className="filters">
         <div className="filter">
           <label htmlFor="search-input">Card Name</label>
@@ -86,11 +91,15 @@ export default function CardSearch() {
         </div>
       </div>
 
-      <div className="card-list">
-        {cards.map(card => (
-          <Card key={card.id} {...card} />
-        ))}
-      </div>
+      {!isLoading ? (
+        <div className="card-list">
+          {cards.map(card => (
+            <Card key={card.id} {...card} />
+          ))}
+        </div>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 }
